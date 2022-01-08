@@ -11,14 +11,28 @@ public class Hello {
 	public Hello() {
 		// TODO Auto-generated constructor stub
 	}
-    @Path("hello")
+    //@Path("hello")
     @GET
     @Produces(MediaType.TEXT_PLAIN) //le type de retour
 	public Response hello() {
 		return Response
 				.status(200)
 				.entity("hello :)")
-				.build()
-;	}
+				.build();}
+    
+    @Path("hello/{fName}/{lName}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response sayHelloTo(@PathParam(value="fName") String name,
+    		@PathParam(value="lName") String lname) {
+    	return Response.status(200).entity("hello"+name+" "+lname).build();
+    }
+    
+    @Path("test")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response sayHelloTo(@QueryParam(value="fName") String name) {
+    	return Response.status(200).entity("hello"+name).build();
+    }
 
 }
