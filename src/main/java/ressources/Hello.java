@@ -31,7 +31,7 @@ public class Hello {
     @Path("test")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public Response sayHelloTo(@QueryParam(value="fName") String name) {
+    public Response sayHelloToQuery(@QueryParam(value="fName") String name) {
     	return Response.status(200).entity("hello"+name).build();
     }
 
