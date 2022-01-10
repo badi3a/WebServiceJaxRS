@@ -17,7 +17,7 @@ public class WsEmploye {
 	
 	public WsEmploye() {
 		// TODO Auto-generated constructor stub
-		employes.add(new Employe (123, "Ahemd","Ben Foulen"));
+		//employes.add(new Employe (123, "Ahemd","Ben Foulen"));
 	}
 	
 	//getEmploye XML & JSON
@@ -33,10 +33,39 @@ public class WsEmploye {
 			return Response.status(200).entity("liste Vide").build();
 					
 	}
-	//addEmploye
-	
+	//addEmploye XML & JSON
+	@POST
+	@Path("add")
+	//@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response ajouterEmploye(Employe employe) {
+		 if(employes.add(employe))
+	 return Response.status(201).entity("Add Successful").build();
+	 return Response.status(200).entity("Echec: Error").build();
+	  
+	}
 	//deleteEmploye
+	@DELETE
+	@Path("delete")
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response deleteEmpl(@QueryParam(value="id")int cin){
+		int index= getIndexByCin(cin);
+		if (index!=-1) {
+			employes.remove(index);
+			return Response.status(200).entity("delete Successful").build();
+		}else 
+			return Response.status(200).entity("delete error").build();
+			
+    }
 	
+	public int getIndexByCin(int cin) {
+		for(Employe emp: employes) {
+			if (emp.getCin()==cin)
+				return employes.indexOf(emp);
+		}
+		return -1;
+	}
 	//UpdateEmploye
 	
 	
