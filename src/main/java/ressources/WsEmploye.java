@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import entities.Employe;
+
 @Path("employe")
 public class WsEmploye {
 
@@ -58,7 +59,24 @@ public class WsEmploye {
 			return Response.status(200).entity("delete error").build();
 			
     }
+	//UpdateEmploye
+	@PUT
+	@Path("update")
+	//@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response updateEmploye(Employe e) {
+		int index= this.getIndexByCin(e.getCin());
+		if (index!=-1) {
+			employes.set(index, e);
+			return Response.status(201).entity("update Ok").build();
+			
+		}
+		 return Response.status(200).entity("delete error").build();
 	
+	}
+	
+	//searchEmploye
 	public int getIndexByCin(int cin) {
 		for(Employe emp: employes) {
 			if (emp.getCin()==cin)
@@ -66,9 +84,6 @@ public class WsEmploye {
 		}
 		return -1;
 	}
-	//UpdateEmploye
 	
-	
-	//searchEmploye
 
 }
