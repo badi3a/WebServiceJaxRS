@@ -18,14 +18,14 @@ public class WsEmploye {
 	
 	public WsEmploye() {
 		// TODO Auto-generated constructor stub
-		//employes.add(new Employe (123, "Ahemd","Ben Foulen"));
+		employes.add(new Employe (123, "Ahemd","Ben Foulen"));
 	}
 	
 	//getEmploye XML & JSON
 	@GET
 	@Path("list")
-	@Produces(MediaType.APPLICATION_JSON)
-	//@Produces(MediaType.APPLICATION_XML)
+	//@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public  Response displayEmployeesList() {
 		if(employes.size()!=0) {
 			GenericEntity data = new GenericEntity<List<Employe>>(employes){};

@@ -31,6 +31,8 @@
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>2.25.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.swagger/swagger-jaxrs -->
+		
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
